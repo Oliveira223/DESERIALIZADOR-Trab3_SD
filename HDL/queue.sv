@@ -25,3 +25,25 @@ module queue(
     output logic data_out,
     output logic len_out
 );
+
+//estados: pronto (para receber)
+//         salvando 
+
+
+always @ff(posedge clock or posedge reset) begin
+    if (reset) begin
+    data_in     <= 0;
+    enq_in      <= 0;
+    deq_in      <= 0;
+    data_out    <= 0;
+    len_out     <= 0;
+    end else begin
+
+
+
+
+
+end
+
+
+endmodule
