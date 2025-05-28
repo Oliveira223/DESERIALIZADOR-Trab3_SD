@@ -4,7 +4,7 @@ deserializador:
         - recebe uma sequência de 8 bits pelo data_in;
 	- escreve palavras de 8 bits no data_out;
 	- o sinal status_out indica se o serealizador pode receber dados;
-	- o sinal write_in indica que o dado deve interpretado pelo deserializador;
+	- o sinal write_in indica que o dado deve ser interpretado pelo deserializador;
 	- o fio data_out possui 8 bits e é a saída de dados do deserializador;
 	- os dados estão prontos para consumo quando o sinal data_ready está alto;
         - para confirmar o dado recebido o sinal ack_in é escrito.
@@ -17,7 +17,7 @@ fila:
         - quando o sinal dequeue_in sobe, o 1º dado a ser retirado deve aparecer em data_out no próximo ciclo SE o nº de elementos (len_out) for maior que 0.
 
 regras:
-        - (2,5) Construção do serializador, com tb, observando as seguintes regras: 
+        - (2,5) Construção do deserializador, com tb, observando as seguintes regras: 
              - O serializador deve receber 1 bit pelo data_in;
              - Se o sinal write_in estiver alto, o bit recebido deverá ser guardado; 
              - Quando houver 8 bits guardados, o sinal data_ready deverá estar alto e os bits guardados deverão aparecer em data_out, ou seja, existem dados para transmitir;
