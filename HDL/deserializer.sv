@@ -1,4 +1,4 @@
-/*deserializador: 
+/* deserializador: 
     - recebe uma sequência de 8 bits pelo data_in;
 	- escreve palavras de 8 bits no data_out;
 	- o sinal status_out indica se o serealizador pode receber dados;
@@ -17,24 +17,31 @@ regras:
 */
 
 module deserializer(
-    input  logic      clock,
+    input  logic clock,
     input  logic      reset,
 
     input  logic [7:0] data_in,      //entrada de 8 bits
-    input  logic      write_in,
+    input  logic [1:0] write_in,
+    input  logic [1:0] ack_in,
 
-    output logic      data_ready,
-    output logic      status_out,
-    output logic[7:0] data_out      //saida pacotes de 8 bits
+    output logic [1:0] data_ready,
+    output logic [1:0] status_out,
+    output logic [7:0] data_out      //saida pacotes de 8 bits
+
 );
 
+logic [3:0] full;
 
+typedef enum {  } name;
 
 always_ff @(posedge clock or posedge reset) begin
     if(reset) begin
         data_in <= 0;
+        write_in <= 0;
+        ack_in <= 0;
+        data_ready <= 0;
+        status_out <= 0;
         data_out <= 0;
-        
     end else begin
 
     end
