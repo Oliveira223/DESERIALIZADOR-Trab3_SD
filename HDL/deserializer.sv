@@ -8,7 +8,7 @@
     - para confirmar o dado recebido o sinal ack_in é escrito.
 
 regras: 
-    - O serializador deve receber 1 bit pelo data_in;
+    - O deserializador deve receber 1 bit pelo data_in;
     - Se o sinal write_in estiver alto, o bit recebido deverá ser guardado; 
     - Quando houver 8 bits guardados, o sinal data_ready deverá estar alto e os bits guardados deverão aparecer em data_out, ou seja, existem dados para transmitir;
     - Os valores de data_out e data_ready deverão se manter até o sinal ack_in ficar alto, ou seja, que os dados foram recebidos;
@@ -18,7 +18,7 @@ regras:
 
 module deserializer(
     input  logic clock,
-    input  logic      reset,
+    input  logic reset,
 
     input  logic [7:0] data_in,      //entrada de 8 bits
     input  logic [1:0] write_in,
@@ -32,7 +32,8 @@ module deserializer(
 
 logic [3:0] full;
 
-typedef enum {  } name;
+typedef enum {R, G, E  } statetype;
+statetype estados;
 
 always_ff @(posedge clock or posedge reset) begin
     if(reset) begin
@@ -40,9 +41,19 @@ always_ff @(posedge clock or posedge reset) begin
         write_in <= 0;
         ack_in <= 0;
         data_ready <= 0;
-        status_out <= 0;
+        status_out <= 1;
         data_out <= 0;
+        estados <= R;
     end else begin
+
+        case (estados)
+
+        R: begin
+            if (status_out != 0) begin
+                
+            end
+        end 
+        endcase
 
     end
 
