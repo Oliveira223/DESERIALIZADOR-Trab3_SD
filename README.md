@@ -41,4 +41,8 @@
 
 - (1,0) O TB deverá demonstrar exercitar um cenário onde dados são inseridos no serializador e removidos da fila de forma que a taxa de inserção (e remoção) não cause travamento no deserializador (caso bom) 
 
+<<<<<<< HEAD
 - (1,0) Construção do README.md contendo instruções de como executar o projeto e resultados obtidos.
+=======
+- (1,0) Construção do README.md contendo instruções de como executar o projeto e resultados obtidos.
+>>>>>>> refs/remotes/origin/main
