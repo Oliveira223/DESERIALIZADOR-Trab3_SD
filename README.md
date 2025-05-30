@@ -4,7 +4,7 @@
 - recebe uma sequência de 8 bits pelo data_in;
 - escreve palavras de 8 bits no data_out;
 - o sinal status_out indica se o serealizador pode receber dados;
-- o sinal write_in indica que o dado deve ser interpretado pelo deserializador;
+- o sinal write_in indica que o dado deve ser interpretado (guarda o sinal) pelo deserializador;
 - o fio data_out possui 8 bits e é a saída de dados do deserializador;
 - os dados estão prontos para consumo quando o sinal data_ready está alto;
 - para confirmar o dado recebido o sinal ack_in é escrito.

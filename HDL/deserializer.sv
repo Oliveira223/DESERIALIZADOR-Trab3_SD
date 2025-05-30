@@ -23,7 +23,7 @@ typedef enum logic [1:0] {
   logic [3:0] count;        //Conta bits até 8
   logic [7:0] tmp_vector;   //Vetor temporario que enviara os dados completos para data_out em seguida, para evitar problemas
 
-    always_ff @(posedge clock_100 or posedge reset) begin
+    always @(posedge clock_100 or posedge reset) begin
         if(reset) begin
           state <= IDLE;
           tmp_vector <= 8'b0;

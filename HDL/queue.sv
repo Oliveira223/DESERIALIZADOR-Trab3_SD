@@ -30,7 +30,7 @@ module queue(
 //         salvando 
 
 
-always @ff(posedge clock or posedge reset) begin
+always @(posedge clock or posedge reset) begin
     if (reset) begin
     data_in     <= 0;
     enq_in      <= 0;
