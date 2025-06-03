@@ -1,4 +1,4 @@
-module deserializer_tb();
+module deserializer_tb;
 
   logic clock_100;
   logic reset;
