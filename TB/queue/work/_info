@@ -14,10 +14,10 @@ R1
 cModel Technology
 Z2 dD:/Faculdade/Sistemas Digitais/Deserializer/deserializer4.0/Deserializer-main/TB/queue
 T_opt
-!s110 1748913798
-V_JFI:ONNlK>em:@W2Go;92
+!s110 1748979413
+VU:K]hWA5X=`H1E_G^;4Tl2
 04 8 4 work queue_tb fast 0
-=1-00e2696bfb0f-683e4e85-27e-518
+=1-00e2696bfb0f-683f4ed5-b6-4d5c
 R1
 !s12f OEM100
 !s12b OEM100
@@ -29,23 +29,23 @@ OL;O;2024.1;79
 vqueue
 2../../HDL/queue.sv
 Z4 DXx6 sv_std 3 std 0 22 9oUSJO;AeEaW`l:M@^WG92
-Z5 !s110 1748913759
+Z5 !s110 1748979389
 !i10b 1
-!s100 YXzGBIHKLUPFM[Ho9mhhG2
-IE6`?HgQEVO:A?DeF=`:M;0
+!s100 FKhLkFMSHOWSjML4PZzcI0
+IcONFn;A=?@^9T?Wf5e[H00
 S1
 R2
-w1748913756
+w1748979338
 8../../HDL/queue.sv
 F../../HDL/queue.sv
 !i122 0
-L0 1 78
+L0 1 81
 Z6 VDg1SIo80bB@j0V0VzS_@n1
 Z7 OL;L;2024.1;79
 r1
 !s85 0
 31
-Z8 !s108 1748913759.000000
+Z8 !s108 1748979389.000000
 !s107 ../../HDL/queue.sv|
 !s90 -reportprogress|300|-work|work|../../HDL/queue.sv|
 !i113 0
@@ -56,15 +56,15 @@ vqueue_tb
 R4
 R5
 !i10b 1
-!s100 _E:0<kFTAg9cVlcVE3Lhj0
-IWT_PJADP[96YU<4GXU>J@0
+!s100 ]8AYC83;2]EVm9WbOAYNX2
+IO9@L6BSHA<R=O?zkd>S<U3
 S1
 R2
-w1748913460
+w1748978868
 8queue_tb.sv
 Fqueue_tb.sv
 !i122 1
-L0 2 65
+L0 2 69
 R6
 R7
 r1
