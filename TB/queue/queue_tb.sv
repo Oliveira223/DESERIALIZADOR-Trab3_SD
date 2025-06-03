@@ -40,46 +40,28 @@ len_out = 0;
 
 reset = 0;
 
-// enviar vetores de 8 bits
+data_in = 8'h11; enq_in = 1; #50; enq_in = 0;
+data_in = 8'h22; enq_in = 1; #50; enq_in = 0;
+data_in = 8'h33; enq_in = 1; #50; enq_in = 0;
+data_in = 8'h44; enq_in = 1; #50; enq_in = 0;
+data_in = 8'h55; enq_in = 1; #50; enq_in = 0;
+data_in = 8'h66; enq_in = 1; #50; enq_in = 0;
+data_in = 8'h77; enq_in = 1; #50; enq_in = 0;
+data_in = 8'h88; enq_in = 1; #50; enq_in = 0;
+data_in = 8'h99; enq_in = 1; #50; enq_in = 0;
 
-//send_vec(0000001);
-//send_vec(0000010);
+deq_in = 1; #50; deq_in = 0;
+deq_in = 1; #50; deq_in = 0;
+deq_in = 1; #50; deq_in = 0;
+deq_in = 1; #50; deq_in = 0;
+deq_in = 1; #50; deq_in = 0;
+deq_in = 1; #50; deq_in = 0;
+deq_in = 1; #50; deq_in = 0;
+deq_in = 1; #50; deq_in = 0;
+deq_in = 1; #50; deq_in = 0;
 
-
-//é que manualmente a gente consegue ter um melhor controle das flags, usando a task n dá
-
-
- data_in = 8'h11; enqueue_in = 1; #50; enqueue_in = 0;
-        data_in = 8'h22; enqueue_in = 1; #50; enqueue_in = 0;
-        data_in = 8'h33; enqueue_in = 1; #50; enqueue_in = 0;
-        data_in = 8'h44; enqueue_in = 1; #50; enqueue_in = 0;
-        data_in = 8'h55; enqueue_in = 1; #50; enqueue_in = 0;
-        data_in = 8'h66; enqueue_in = 1; #50; enqueue_in = 0;
-        data_in = 8'h77; enqueue_in = 1; #50; enqueue_in = 0;
-        data_in = 8'h88; enqueue_in = 1; #50; enqueue_in = 0;
-        data_in = 8'h99; enqueue_in = 1; #50; enqueue_in = 0;
-
-        dequeue_in = 1; #50; dequeue_in = 0;
-        dequeue_in = 1; #50; dequeue_in = 0;
-        dequeue_in = 1; #50; dequeue_in = 0;
-        dequeue_in = 1; #50; dequeue_in = 0;
-        dequeue_in = 1; #50; dequeue_in = 0;
-        dequeue_in = 1; #50; dequeue_in = 0;
-        dequeue_in = 1; #50; dequeue_in = 0;
-        dequeue_in = 1; #50; dequeue_in = 0;
-        dequeue_in = 1; #50; dequeue_in = 0;
-
-
-
-task send_vec(input logic vec_val);
-    begin
-      @(posedge clock_10);
-      data_in = vec_val;
-      enq_in= 1;
-      @(posedge clock_10);
-      enq_in = 0;
-    end
-  endtask
+$stop;
+end
 
 endmodule
 

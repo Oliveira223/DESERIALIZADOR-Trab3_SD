@@ -18,9 +18,6 @@ module queue(
 
 always @(posedge clock_10 or posedge reset) begin
     if (reset) begin
-    data_in     <= 0;
-    enq_in      <= 0;
-    deq_in      <= 0;
     data_out    <= 0;
     len_out     <= 0;
     end else begin
@@ -46,7 +43,7 @@ always @(posedge clock_10 or posedge reset) begin
         //dequeue
         if(deq_in) begin
             if(len_out > 0) begin //se tem algo para tirar e deq_in ta ativo
-                data_out <= vector[head]          //primeiro que entrou
+                data_out <= vector[head];         //primeiro que entrou
                 $display("Dequeue: Retirei %h da posição %0d", vector[head], head);
                 head <= (head + 1) % 8;           //incrementa head em 1, se chegar em 8 zera
                 len_out <= len_out - 1;
