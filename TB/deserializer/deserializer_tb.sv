@@ -1,7 +1,7 @@
 `timescale 1us/1ns
 module deserializer_tb;
 
-  logic clock_100;
+  logic clock_100k;
   logic reset;
   logic data_in;
   logic write_in;
@@ -10,7 +10,7 @@ module deserializer_tb;
   logic data_ready;
 
   deserializer dut (
-    .clock_100(clock_100),
+    .clock_100k(clock_100k),
     .reset(reset),
     .data_in(data_in),
     .write_in(write_in),
@@ -19,10 +19,10 @@ module deserializer_tb;
     .data_ready(data_ready)
   );
 
-  always #5 clock_100 = ~clock_100;  // clock 100kHz
+  always #5 clock_100k = ~clock_100k;  // clock 100kHz
 
   initial begin
-    clock_100 = 0;
+    clock_100k = 0;
     data_in = 0;
     write_in = 0;
     ack_in = 0;
@@ -56,10 +56,10 @@ module deserializer_tb;
 
   task send_bit(input logic bit_val);
     begin
-      @(posedge clock_100);
+      @(posedge clock_100k);
       data_in = bit_val;
       write_in = 1;
-      @(posedge clock_100);
+      @(posedge clock_100k);
       write_in = 0;
     end
   endtask

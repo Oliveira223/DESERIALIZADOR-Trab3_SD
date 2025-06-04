@@ -1,10 +1,10 @@
 onerror {resume}
 quietly WaveActivateNextPane {} 0
 add wave -noupdate clock_divider_tb/reset
-add wave -noupdate clock_divider_tb_tb/clock_1M
+add wave -noupdate clock_divider_tb/clock_1M
 add wave -noupdate clock_divider_tb/clock_100k
 add wave -noupdate clock_divider_tb/clock_10k
-
+ 
 TreeUpdate [SetDefaultTree]
 WaveRestoreCursors {{Cursor 1} {377768 ns} 0}
 quietly wave cursor active 1

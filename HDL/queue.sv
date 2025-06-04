@@ -1,6 +1,6 @@
 module queue(
     input logic [7:0]   data_in,
-    input logic         clock_10,   // clock 10KHZ
+    input logic         clock_10k,   // clock 10KHZ
     input logic         reset,
 
     input logic         enq_in,
@@ -16,7 +16,7 @@ module queue(
     logic [2:0] tail;        // tamanho até 8
 
 
-always @(posedge clock_10 or posedge reset) begin
+always @(posedge clock_10k or posedge reset) begin
     if (reset) begin
     data_out    <= 0;
     len_out     <= 0;
