@@ -26,11 +26,14 @@ module clock_divider(
             counter_100k <= 0;
             clock_100k   <= 0;
         end else begin
-            if(counter_100k == 4'd4) begin
+            if(counter_100k == 4'd9) begin
                 clock_100k <= ~clock_100k;  
                 counter_100k <= 0;
+                //$display("subi o clock_100k");   
             end else begin
+                clock_100k <= 0;
                 counter_100k <= counter_100k + 1;
+                //$display("clock_100k + 1 | %b", counter_100k);
             end
         end
     end
@@ -41,11 +44,14 @@ module clock_divider(
             counter_10k <= 0;
             clock_10k   <= 0;
         end else begin
-            if(counter_10k == 4'd4) begin
+            if(counter_10k == 7'd99) begin
                 clock_10k   <= ~clock_10k;      
-                counter_10k <= 0;
+                counter_10k <= 0; 
+                //$display("subi o clock_10k");  
             end else begin
+                clock_10k <= 0;
                 counter_10k <= counter_10k + 1;
+                //$display("clock_10k  + 1 | %b", counter_10k);
             end
         end
     end

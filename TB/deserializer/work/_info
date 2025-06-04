@@ -7,6 +7,13 @@ R0
 R1
 R0
 R1
+!s11f MIXED_VERSIONS
+R0
+R1
+R0
+R1
+R0
+R1
 R0
 R1
 R0
@@ -29,7 +36,6 @@ R1
 R1
 R0
 R1
-!s11f vlog 2024.1 2024.04, Apr 19 2024
 13
 !s112 1.1
 !i10d 8192
@@ -38,10 +44,10 @@ R1
 cModel Technology
 Z2 dD:/Faculdade/Sistemas Digitais/Deserializer/deserializer_main/TB/deserializer
 T_opt
-!s110 1748706265
-Vhd9=1O@22Hce:8RDb1I^<3
+!s110 1749061846
+VfCPDXe6O:kIQzFk0]kg?M0
 Z3 04 15 4 work deserializer_tb fast 0
-=1-00e2696bfb0f-683b23d9-a4-5030
+=1-00e2696bfb0f-684090d5-306-1a3c
 R1
 Z4 !s12f OEM100
 Z5 !s12b OEM100
@@ -67,50 +73,50 @@ R2
 vdeserializer
 2../../HDL/deserializer.sv
 Z9 DXx6 sv_std 3 std 0 22 9oUSJO;AeEaW`l:M@^WG92
-Z10 !s110 1748706242
+Z10 !s110 1749061845
 !i10b 1
-!s100 kP;nQn;E8_b5W=2cBFU?@0
-IBFn@OdJ97iVVf>zJJ`RW>1
+!s100 U=>YXo_P1X]<k[NEm0JeB0
+IaM7^K`DESI@K@h0X;]RQ72
 S1
-Z11 dD:/Faculdade/Sistemas Digitais/Deserializer/Teste1.2/DESERIALIZADOR-Trab3_SD-codespace-miniature-spoon-97qgvr6xgjrvcg94/TB/deserializer
-w1748706218
+Z11 dD:/Faculdade/Sistemas Digitais/Deserializer/deserializer5.0/Deserializer-main/TB/deserializer
+Z12 w1749035983
 8../../HDL/deserializer.sv
 F../../HDL/deserializer.sv
 !i122 0
 L0 1 98
-Z12 VDg1SIo80bB@j0V0VzS_@n1
-Z13 OL;L;2024.1;79
+Z13 VDg1SIo80bB@j0V0VzS_@n1
+Z14 OL;L;2024.1;79
 r1
 !s85 0
 31
-Z14 !s108 1748706242.000000
+Z15 !s108 1749061845.000000
 !s107 ../../HDL/deserializer.sv|
 !s90 -reportprogress|300|-work|work|../../HDL/deserializer.sv|
 !i113 0
-Z15 o-work work -L mtiAvm -L mtiRnm -L mtiOvm -L mtiUvm -L mtiUPF -L infact
+Z16 o-work work -L mtiAvm -L mtiRnm -L mtiOvm -L mtiUvm -L mtiUPF -L infact
 R7
 vdeserializer_tb
 2deserializer_tb.sv
 R9
 R10
 !i10b 1
-!s100 H1L=U7HWjM3[]7FC4jmLo1
-I6E55Z;R]1J_njUReCLSF]3
+!s100 Y<B`9bgZ6?jgQXN3<1abL0
+IOhA<D3gL9L34ZbV9NeJfk0
 S1
 R11
-w1748703628
+R12
 8deserializer_tb.sv
 Fdeserializer_tb.sv
 !i122 1
-L0 1 66
-R12
+L0 2 66
 R13
+R14
 r1
 !s85 0
 31
-R14
+R15
 !s107 deserializer_tb.sv|
 !s90 -reportprogress|300|-work|work|deserializer_tb.sv|
 !i113 0
-R15
+R16
 R7

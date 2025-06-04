@@ -1,10 +1,8 @@
 m255
 K4
 z2
-Z0 !s12c _opt
-Z1 !s99 nomlopt
-R0
-R1
+!s12c _opt
+Z0 !s99 nomlopt
 !s11f vlog 2024.1 2024.04, Apr 19 2024
 13
 !s112 1.1
@@ -12,67 +10,67 @@ R1
 !i10e 25
 !i10f 100
 cModel Technology
-Z2 dD:/Faculdade/Sistemas Digitais/Deserializer/deserializer4.0/Deserializer-main/TB/queue
+Z1 dD:/Faculdade/Sistemas Digitais/Deserializer/deserializer5.0/Deserializer-main/TB/queue
 T_opt
-!s110 1748979413
-VU:K]hWA5X=`H1E_G^;4Tl2
+!s110 1749061947
+VD]F:nO1A147SJ<G0d6h2;2
 04 8 4 work queue_tb fast 0
-=1-00e2696bfb0f-683f4ed5-b6-4d5c
-R1
+=1-00e2696bfb0f-6840913b-9e-1f10
+R0
 !s12f OEM100
 !s12b OEM100
 !s124 OEM10U2 
 o-quiet -auto_acc_if_foreign -work work +acc
-Z3 tCvgOpt 0
+Z2 tCvgOpt 0
 n@_opt
 OL;O;2024.1;79
 vqueue
 2../../HDL/queue.sv
-Z4 DXx6 sv_std 3 std 0 22 9oUSJO;AeEaW`l:M@^WG92
-Z5 !s110 1748979389
+Z3 DXx6 sv_std 3 std 0 22 9oUSJO;AeEaW`l:M@^WG92
+Z4 !s110 1749061946
 !i10b 1
-!s100 FKhLkFMSHOWSjML4PZzcI0
-IcONFn;A=?@^9T?Wf5e[H00
+!s100 2QES:>@`MmLlMlGo?=h2G0
+IYDk7LAbX<R?OX]R:5iRNg2
 S1
-R2
-w1748979338
+R1
+w1749035983
 8../../HDL/queue.sv
 F../../HDL/queue.sv
 !i122 0
 L0 1 81
-Z6 VDg1SIo80bB@j0V0VzS_@n1
-Z7 OL;L;2024.1;79
+Z5 VDg1SIo80bB@j0V0VzS_@n1
+Z6 OL;L;2024.1;79
 r1
 !s85 0
 31
-Z8 !s108 1748979389.000000
+Z7 !s108 1749061946.000000
 !s107 ../../HDL/queue.sv|
 !s90 -reportprogress|300|-work|work|../../HDL/queue.sv|
 !i113 0
-Z9 o-work work -L mtiAvm -L mtiRnm -L mtiOvm -L mtiUvm -L mtiUPF -L infact
-R3
+Z8 o-work work -L mtiAvm -L mtiRnm -L mtiOvm -L mtiUvm -L mtiUPF -L infact
+R2
 vqueue_tb
 2queue_tb.sv
+R3
 R4
-R5
 !i10b 1
-!s100 ]8AYC83;2]EVm9WbOAYNX2
-IO9@L6BSHA<R=O?zkd>S<U3
+!s100 GDd1oNQRLf]U@8EXMJ_362
+I5LWGWL^`_@XPe[:kH>EXc1
 S1
-R2
-w1748978868
+R1
+w1749035984
 8queue_tb.sv
 Fqueue_tb.sv
 !i122 1
 L0 2 69
+R5
 R6
-R7
 r1
 !s85 0
 31
-R8
+R7
 !s107 queue_tb.sv|
 !s90 -reportprogress|300|-work|work|queue_tb.sv|
 !i113 0
-R9
-R3
+R8
+R2

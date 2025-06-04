@@ -51,12 +51,16 @@ always @(posedge clock_10k or posedge reset) begin
                     $display("[%h] [%h] [%h] [%h] [%h] [%h] [%h] [%h]", 
                     vector[0], vector[1], vector[2], vector[3], 
                     vector[4], vector[5], vector[6], vector[7]);
+                    $display("Queue size: %0d", len_out);
+                    $display("Head: %0d, Tail: %0d", head, tail);  
             end else begin
             status_out <= 1;
-            $display("ERROR: Queue FULL! Couldn't place %h", data_in);
-            $display("[%h] [%h] [%h] [%h] [%h] [%h] [%h] [%h]", 
-                    vector[0], vector[1], vector[2], vector[3], 
-                    vector[4], vector[5], vector[6], vector[7]);
+                $display("ERROR: Queue FULL! Couldn't place %h", data_in);
+                $display("[%h] [%h] [%h] [%h] [%h] [%h] [%h] [%h]", 
+                vector[0], vector[1], vector[2], vector[3], 
+                vector[4], vector[5], vector[6], vector[7]);
+                $display("Queue size: %0d", len_out);
+                $display("Head: %0d, Tail: %0d", head, tail);  
             end
         end
 
@@ -72,6 +76,8 @@ always @(posedge clock_10k or posedge reset) begin
                     $display("[%h] [%h] [%h] [%h] [%h] [%h] [%h] [%h]", 
                     vector[0], vector[1], vector[2], vector[3], 
                     vector[4], vector[5], vector[6], vector[7]);
+                    $display("Queue size: %0d", len_out);
+                    $display("Head: %0d, Tail: %0d", head, tail);  
             end else begin
                  $display("ERROR: Nothing to be removed");
             end

@@ -35,7 +35,7 @@ typedef enum logic [1:0] {
             case(state)
                 //Estado parado, esperando o write_in
                 IDLE: begin
-                    $display("Entrei no estado IDLE");
+                    //$display("Entrei no estado IDLE");
                     data_ready <= 0;
                     status_out <= 0;
 
@@ -44,20 +44,20 @@ typedef enum logic [1:0] {
                         $display("Write_in ativo");
                         tmp_vector <= {tmp_vector[6:0], data_in}; //tmp_vector[6:0] faz o shift left e então recebe o novo bit
                         $display("tmp_vector = %b", tmp_vector);
-                        $display("Recebi o bit %b", data_in);
+                        $display("\nRecebi o bit %b", data_in);
                         count <= count + 1;
                         state <= RECEIVING;
                     end
                 end
 
                 RECEIVING: begin
-                    $display("Entrei no estado RECEIVING");
+                    //$display("Entrei no estado RECEIVING");
                     status_out <= 1; //ocupado recebendo dados
                     //agora pega os demais bits
                     if(write_in) begin
                         tmp_vector <= {tmp_vector[6:0], data_in}; 
                         $display("tmp_vector = %b", tmp_vector);
-                        $display("Recebi o bit %b", data_in);
+                        $display("\nRecebi o bit %b", data_in);
                         count <= count + 1;
                     end
 
@@ -65,8 +65,9 @@ typedef enum logic [1:0] {
                     if(count == 7 && write_in) begin
                         // Aqui acontece a passagem para fila -------
                         data_out <= {tmp_vector[6:0], data_in}; 
+                        $display("tmp_vector = %b", {tmp_vector[6:0], data_in});
+                        $display("\n > Cheguei em 8 bits \n");
                         $display("data_out = %b", {tmp_vector[6:0], data_in});
-                        $display("Cheguei em 8 bits");
                         $display("data_ready <= 1");
                         data_ready <= 1;   //to pronto pra ir pra fila
                         // -------------------------------------------
@@ -74,8 +75,8 @@ typedef enum logic [1:0] {
                     end
                 end
 
-                READY: begin
-                    $display("Entrei no estado READY");
+                READY: begin  //é tipo "ready?"
+                    //$display("Entrei no estado READY");
                     if(ack_in) begin
                         $display("Ack_in ativo");
                         data_ready <= 0;

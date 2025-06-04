@@ -7,7 +7,7 @@ module clock_divider_tb;
     wire clock_100k;
     wire clock_10k;
 
-    clock_divider_tb dut (
+    clock_divider dut (
         .clock_1M(clock_1M),
         .reset(reset),
         .clock_10k(clock_10k),
@@ -21,7 +21,7 @@ module clock_divider_tb;
         #2;
         reset = 0;
         #1000;
-        $finish;
+        $stop;
     end
 
 endmodule
