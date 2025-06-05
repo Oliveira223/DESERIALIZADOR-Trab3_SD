@@ -1,6 +1,6 @@
 # Projeto: Deserializador com Buffer de Fila
-Esse projeto implementa um sistema digital composto por dois módulos principais:
-1. __Deserializer__ - Recebe dados seriais (bit a bit) e monta um vetor de 8 bits.
+Esse projeto implementa um sistema digital composto por quatro módulos, sendo um deles o __top_module__, feito exclusivamente para ligar as entradas e saíads entre os modulos:
+### 1. __Deserializer__ - Recebe dados seriais (bit a bit) e monta um vetor de 8 bits.
 
 | **Sinal**    | **Direção** | **Descrição**                   |
 | ------------ | ----------- | ------------------------------- |
@@ -8,13 +8,13 @@ Esse projeto implementa um sistema digital composto por dois módulos principais
 | `reset`      | Input       | Reset síncrono                  |
 | `data_in`    | Input       | Dados seriais                   |
 | `write_in`   | Input       | Pulso para capturar o bit atual |
-| `ack_in`     | Input       | Confirmação de leitura do vetor |
+| `ack_in`     | Input       | Confirmação de leitura da queue |
 | `data_out`   | Output      | Vetor de 8 bits montado         |
 | `data_ready` | Output      | Vetor pronto para ser lido      |
 
 
 
-2. __Queue (Fila FIFO)__ - Armazena temporariamente o vetor recebido para posterior processamento.
+### 2. __Queue (Fila FIFO)__ - Armazena temporariamente o vetor recebido para posterior processamento.
 O sistema é projetado para aplicações onde dados seriais precisam ser organizados em pacotes de 8 bits e processados de forma assíncrona.
 
 | **Sinal**    | **Direção** | **Descrição**                   |
@@ -26,8 +26,22 @@ O sistema é projetado para aplicações onde dados seriais precisam ser organiz
 | `deq_in`     | Imput       | Flag para permitir dequeue      |
 | `data_out`   | Output      | Vetor removido da fila          |
 | `len_out`    | Output      | Conta o tamanho da fila         | 
+| `ack_in_q`   | Output      | Diz se já leu o valor           |
+
+#### Funcionamento
+- Ao receber enq_in, o dado presente em data_in é enfileirado.
+- Ao receber deq_in, o dado mais antigo é removido e entregue em data_out.
+- O sinal len_out indica quantos elementos estão presentes na fila no momento.
 
 
-
-3. __Clock_Divider__ - Módulo que recebe um Clock de 1MHz e divive em dois clocks, um de __100KHz__ e outro de __10KHz__.
+### 3. __Clock_Divider__ - Módulo que recebe um Clock de 1MHz e divive em dois clocks, um de __100KHz__ e outro de __10KHz__.
    Esse módulo usa as variáveis `counter_100K` e `counter_10K` para contar o clock de 1MHz até 10 e até 100, respectivamente. Quando chega nesses valores, os clocks sobem e a contagem reinicia.  
+
+| **Sinal**    | **Direção** | **Descrição**               |
+| ------------ | ----------- | --------------------------- |
+| `clock_in`   | Input       | Clock principal de 1 MHz    |
+| `reset`      | Input       | Reset síncrono              |
+| `clock_100K` | Output      | Clock dividido para 100 KHz |
+| `clock_10K`  | Output      | Clock dividido para  10 KHz |
+
+### 4. __Top_Module

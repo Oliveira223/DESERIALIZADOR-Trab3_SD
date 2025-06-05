@@ -3,11 +3,11 @@ module deserializer(
     input  logic reset,
 
     input  logic data_in,           //entrada de bit em bit
-    input  logic write_in,          //flag para ...
-    input  logic ack_in,            //flag para ...
+    input  logic write_in,          //flag para poder escrever no byte
+    input  logic ack_in,            //flag para saber se pode mandar para fila?
 
     output logic [7:0] data_out,    //saida de 8 bits
-    output logic data_ready         //flag para ...
+    output logic data_ready         //flag para dizer que tem dados para ir para fila
 );
 
     logic status_out;
@@ -40,7 +40,7 @@ typedef enum logic [1:0] {
                     status_out <= 0;
 
                     //tem que ter a logica igual aqui dentro para não perder o primeiro bit (por causa do clock), ou seja, essa logica abaixo só acontece uma vez (salvando o primeiro bit).
-                    if(write_in) begin
+                    if(write_in && !ack_in) begin
                         $display("Write_in ativo");
                         tmp_vector <= {tmp_vector[6:0], data_in}; //tmp_vector[6:0] faz o shift left e então recebe o novo bit
                         $display("tmp_vector = %b", tmp_vector);
@@ -54,7 +54,7 @@ typedef enum logic [1:0] {
                     //$display("Entrei no estado RECEIVING");
                     status_out <= 1; //ocupado recebendo dados
                     //agora pega os demais bits
-                    if(write_in) begin
+                    if(write_in && !ack_in) begin
                         tmp_vector <= {tmp_vector[6:0], data_in}; 
                         $display("tmp_vector = %b", tmp_vector);
                         $display("\nRecebi o bit %b", data_in);
@@ -62,7 +62,7 @@ typedef enum logic [1:0] {
                     end
 
                     //quando chegar no 7° ele vai fazer mais um shift para evitar perder dados, porém diretamente no data_out 
-                    if(count == 7 && write_in) begin
+                    if(count == 7 && write_in && !ack_in) begin
                         // Aqui acontece a passagem para fila -------
                         data_out <= {tmp_vector[6:0], data_in}; 
                         $display("tmp_vector = %b", {tmp_vector[6:0], data_in});
@@ -78,7 +78,7 @@ typedef enum logic [1:0] {
                 READY: begin  //é tipo "ready?"
                     //$display("Entrei no estado READY");
                     if(ack_in) begin
-                        $display("Ack_in ativo");
+                        $display("Ack_in HIGH");
                         data_ready <= 0;
                         status_out <= 0;
                         tmp_vector <= 8'b0;
@@ -87,7 +87,7 @@ typedef enum logic [1:0] {
                         state <= IDLE;
                     end
                     else begin
-                        $display("Ack_in não ativo");
+                        $display("Ack_in LOW");
                         status_out <= 1;
                         state <= READY;
                     end
