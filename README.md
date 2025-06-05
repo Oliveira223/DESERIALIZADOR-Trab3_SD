@@ -44,4 +44,33 @@ O sistema é projetado para aplicações onde dados seriais precisam ser organiz
 | `clock_100K` | Output      | Clock dividido para 100 KHz |
 | `clock_10K`  | Output      | Clock dividido para  10 KHz |
 
-### 4. __Top_Module
+#### Funcionamento
+
+- Periodo = 1 / frequencia.
+- Periodo para 1MHz   -> 1 / 1 000 000 = 1us.
+- Periodo para 100KHz -> 1 / 100 000   = 10us.
+- Periodo para 10KHz  -> 1 / 10 000    = 100us.
+- A cada 10  Clocks do 1MHz, conta um clock do 100KHz -> mais rápido, menos ciclos (de 1MHz).
+- A cada 100 Clocks do 1MHz, conta um clock do 10KHz  -> mais lento, mais ciclos.
+
+### 4. __Top_Module__ - Módulo que junta todos os módulos para funcionarem sincronizados.
+
+| **Sinal**    | **Direção** | **Descrição**                               |  
+| ------------ | ----------- | ------------------------------------------- |
+| `clock_1_ M `|  Input      |  Clock principal de 1MHz                    |   
+| `reset`      |  Input      |  Reset síncrono                             |
+| `data_in`    |  Input      |  Entrada serial (1 bit)                     |
+| `write_in`   |  Input      |  Validador do data_in por ciclo             | 
+| `deq_in`     |  Input      |  Sinal de "dequeue" para a fila             | 
+| `data_out`   |  Output     |  Vetor retirado da fila                     | 
+| `len_out`    |  Output     |  Quantidade de elementos atualmente na fila | 
+| `status_out` |  Output     |  Flag de erro de fila cheia/vazia           |
+
+
+
+
+
+
+
+
+
