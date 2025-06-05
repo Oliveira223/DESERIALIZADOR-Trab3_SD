@@ -27,17 +27,23 @@ module top_module_tb;
     );
 
 
-   task send_bit(input logic b);
+  task send_bit(input logic b);
     begin
-    write_in = 1;
-    data_in = b;
-    #10;
-    write_in = 0;
-    #10;
-  end
-endtask
+      write_in  = 1;
+      data_in   = b; #10;            //um clock de 100k
+      write_in  = 0;         
+    end
+  endtask
 
-     initial clock_1M = 0;
+  task remove_byte();
+    begin
+      #100
+      deq_in   = 1; #100;
+      deq_in   = 0; #50;
+    end
+  endtask
+
+    initial clock_1M = 0;
     always #0.5 clock_1M = ~clock_1M;
 
     initial begin
@@ -50,157 +56,195 @@ endtask
         #50; 
 
 
-        $display("======================= \n\n Start of simulation \n\n =======================");
+        $display("============================== \n\n > Start of simulation \n\n ==============================");
         
+
+//================================================================================================\\
+// Primeira etapa: Colocar e tirar bytes em sequencia.
+
+        $display("Primeira etapa: Colocar e tirar bytes em sequencia.");
+
+        // Byte 1: 00010001 (11)
+        $display("\n -> Byte: 00010001 (11)");
+        send_bit(0); send_bit(0); send_bit(0); send_bit(1);
+        send_bit(0); send_bit(0); send_bit(0); send_bit(1);
+        remove_byte();
+
+        #200
+        // Byte 2: 00100010 (22)
+        $display("\n -> Byte: 00100010 (22)");
+        send_bit(0); send_bit(0); send_bit(1); send_bit(0);
+        send_bit(0); send_bit(0); send_bit(1); send_bit(0);
+        remove_byte();
+
+        #200
+        // Byte 3: 00110011 (33)
+        $display("\n -> Byte: 00110011 (33)");
+        send_bit(0); send_bit(0); send_bit(1); send_bit(1);
+        send_bit(0); send_bit(0); send_bit(1); send_bit(1);
+        remove_byte();
+
+        #200
+        // Byte 4: 01000100 (44)
+        $display("\n -> Byte: 01000100 (44)");
+        send_bit(0); send_bit(1); send_bit(0); send_bit(0);
+        send_bit(0); send_bit(1); send_bit(0); send_bit(0);
+        remove_byte();
+
+        #200
+        // Byte 5: 01010101 (55)
+        $display("\n -> Byte: 01010101 (55)");
+        send_bit(0); send_bit(1); send_bit(0); send_bit(1);
+        send_bit(0); send_bit(1); send_bit(0); send_bit(1);
+        remove_byte();
+
+        #200
+        // Byte 6: 01100110 (66)
+        $display("\n -> Byte: 01100110 (66)");
+        send_bit(0); send_bit(1); send_bit(1); send_bit(0);
+        send_bit(0); send_bit(1); send_bit(1); send_bit(0);
+        remove_byte();
         
-        // Byte 1: 10101010  (bit sincrono com clock)
-        $display("\n -> Primero Byte: 10101010 (aa)");
-        write_in = 1;
-        data_in = 1; #10;
-        data_in = 0; #10;
-        data_in = 1; #10;
-        data_in = 0; #10;
-        data_in = 1; #10;
-        data_in = 0; #10;
-        data_in = 1; #10;
-        data_in = 0; #10;
-        write_in = 0; #50;
+        #200
+        // Byte 7: 01110111 (77)
+        $display("\n -> Byte: 01110111 (77)");
+        send_bit(0); send_bit(1); send_bit(1); send_bit(1);
+        send_bit(0); send_bit(1); send_bit(1); send_bit(1);
+        remove_byte();
+
+        #200
+        // Byte 8: 10001000 (88)
+        $display("\n -> Byte: 10001000 (88)");
+        send_bit(1); send_bit(0); send_bit(0); send_bit(0);
+        send_bit(1); send_bit(0); send_bit(0); send_bit(0);
+        remove_byte();
+
+        // #200
+        // // Byte 9: 10011001 (99)
+        // $display("\n -> Byte: 10011001 (99)");
+        // send_bit(1); send_bit(0); send_bit(0); send_bit(1);
+        // send_bit(1); send_bit(0); send_bit(0); send_bit(1);
+        // remove_byte();
+
+//===============================================================================================
+//Segunda Etapa: Colocar 8 bytes e tirar 8 bytes.
+
+        $display("Segunda Etapa: Colocar 8 bytes e tirar 8 bytes.");
+
+        #200
+        // Byte 10: 10101010 (aa)
+        $display("\n -> Byte: 10101010 (aa)");
+        send_bit(1); send_bit(0); send_bit(1); send_bit(0);
+        send_bit(1); send_bit(0); send_bit(1); send_bit(0);
+
+        #200
+        // Byte 11: 10111011 (bb)
+        $display("\n -> Byte: 10111011 (bb)");
+        send_bit(1); send_bit(0); send_bit(1); send_bit(1);
+        send_bit(1); send_bit(0); send_bit(1); send_bit(1);
+
+        #200
+        // Byte 12: 11001100 (cc)
+        $display("\n -> Byte: 11001100 (cc)");
+        send_bit(1); send_bit(1); send_bit(0); send_bit(0);
+        send_bit(1); send_bit(1); send_bit(0); send_bit(0);
+
+        #200
+        // Byte 13: 11011101 (dd)
+        $display("\n -> Byte: 11011101 (dd)");
+        send_bit(1); send_bit(1); send_bit(0); send_bit(1);
+        send_bit(1); send_bit(1); send_bit(0); send_bit(1);
+
+        #200
+        // Byte 14: 11101110 (ee)
+        $display("\n -> Byte: 11101110 (ee)");
+        send_bit(1); send_bit(1); send_bit(1); send_bit(0);
+        send_bit(1); send_bit(1); send_bit(1); send_bit(0);
 
 
-      #200
+        
+        #200
+        // Byte 15: 11111111 (ff)   
+        $display("\n -> Byte: 11111111 (ff)");
+        send_bit(1); send_bit(1); send_bit(1); send_bit(1);
+        send_bit(1); send_bit(1); send_bit(1); send_bit(1);
 
-      // Byte 2: 01010101 (usando task)
-      $display("\n -> Segundo Byte: 01010101 (55)");
-      send_bit(0);
-      send_bit(1);
-      send_bit(0);
-      send_bit(1);
-      send_bit(0);
-      send_bit(1);
-      send_bit(0);
-      send_bit(1);
+        #200
+        // Byte: 10101011 (ab)
+        $display("\n -> Byte: 10101011 (ab)");
+        send_bit(1); send_bit(0); send_bit(1); send_bit(0);
+        send_bit(1); send_bit(0); send_bit(1); send_bit(1);
 
-      #200;
+        #200
+        // Byte: 10101100 (ac)
+        $display("\n -> Byte: 10101100 (ac)");
+        send_bit(1); send_bit(0); send_bit(1); send_bit(0);
+        send_bit(1); send_bit(1); send_bit(0); send_bit(0);
 
-      // Byte 3: 11001100
-      $display("\n -> Terceiro Byte: 11001100 (cc)");
-      send_bit(1);
-      send_bit(1);
-      send_bit(0);
-      send_bit(0);
-      send_bit(1);
-      send_bit(1);
-      send_bit(0);
-      send_bit(0);
+        repeat(8) remove_byte();
+        
 
-      #200
-      // tira 1 bytes
-      deq_in = 1; #100;
-      deq_in = 0; #50;
+//=======================================================================================
+///Terceira Etapa: Tentar colocar mais bytes que permitido na fila
 
-      #200
+        $display("Terceira Etapa: Tentar colocar mais bytes que permitido na fila");
+        
+        #200
+        // Byte 16: 00011010 (1a)
+        $display("\n -> Byte: 00011010 (1a)");
+        send_bit(0); send_bit(0); send_bit(0); send_bit(1);
+        send_bit(1); send_bit(0); send_bit(1); send_bit(0);
 
-      // Byte : 00110011
-      $display("\n -> Terceiro Byte: 00110011 (33)");
-      send_bit(0);
-      send_bit(0);
-      send_bit(1);
-      send_bit(1);
-      send_bit(0);
-      send_bit(0);
-      send_bit(1);
-      send_bit(1);
+        #200
+        // Byte 17: 00101010 (2a)
+        $display("\n -> Byte: 00101010 (2a)");
+        send_bit(0); send_bit(0); send_bit(1); send_bit(0);
+        send_bit(1); send_bit(0); send_bit(1); send_bit(0);
 
-      #200
+        #200
+        // Byte 18: 00111010 (3a)
+        $display("\n -> Byte: 00111010 (3a)");
+        send_bit(0); send_bit(0); send_bit(1); send_bit(1);
+        send_bit(1); send_bit(0); send_bit(1); send_bit(0);
 
-      // tira 1 bytes
-      deq_in = 1; #100;
-      deq_in = 0; #50;
+        #200
+        // Byte 19: 01001010 (4a)
+        $display("\n -> Byte: 01001010 (4a)");
+        send_bit(0); send_bit(1); send_bit(0); send_bit(0);
+        send_bit(1); send_bit(0); send_bit(1); send_bit(0);
 
-      #200
+        #200
+        // Byte 20: 01011010 (5a)
+        $display("\n -> Byte: 01011010 (5a)");
+        send_bit(0); send_bit(1); send_bit(0); send_bit(1);
+        send_bit(1); send_bit(0); send_bit(1); send_bit(0);
 
-      // Byte : 00110011
-      $display("\n -> Terceiro Byte: 00110011 (33)");
-      send_bit(0);
-      send_bit(0);
-      send_bit(1);
-      send_bit(1);
-      send_bit(0);
-      send_bit(0);
-      send_bit(1);
-      send_bit(1);
+        #200
+        // Byte 21: 01101010 (6a)
+        $display("\n -> Byte: 01101010 (6a)");
+        send_bit(0); send_bit(1); send_bit(1); send_bit(0);
+        send_bit(1); send_bit(0); send_bit(1); send_bit(0);
 
-      #200
+        #200
+        // Byte 22: 01111010 (7a)
+        $display("\n -> Byte: 01111010 (7a)");
+        send_bit(0); send_bit(1); send_bit(1); send_bit(1);
+        send_bit(1); send_bit(0); send_bit(1); send_bit(0);
 
-      // Byte : 00110011
-      $display("\n -> Terceiro Byte: 00110011 (33)");
-      send_bit(0);
-      send_bit(0);
-      send_bit(1);
-      send_bit(1);
-      send_bit(0);
-      send_bit(0);
-      send_bit(1);
-      send_bit(1);
+        #200
+        // Byte 23: 10001010 (8a)
+        $display("\n -> Byte: 10001010 (8a)");
+        send_bit(1); send_bit(0); send_bit(0); send_bit(0);
+        send_bit(1); send_bit(0); send_bit(1); send_bit(0);
 
-      #200
 
-      // Byte : 00110011
-      $display("\n -> Terceiro Byte: 00110011 (33)");
-      send_bit(0);
-      send_bit(0);
-      send_bit(1);
-      send_bit(1);
-      send_bit(0);
-      send_bit(0);
-      send_bit(1);
-      send_bit(1);
-
-      #200
-
-      // Byte : 00110011
-      $display("\n -> Terceiro Byte: 00110011 (33)");
-      send_bit(0);
-      send_bit(0);
-      send_bit(1);
-      send_bit(1);
-      send_bit(0);
-      send_bit(0);
-      send_bit(1);
-      send_bit(1);
-
-      #200
-      
+        #200
+        // Byte 24: 10011010 (9a)  ->9° byte, a fila deve travar e n deve ser permitido.
+        $display("\n -> Byte: 10011010 (9a)");
+        send_bit(1); send_bit(0); send_bit(0); send_bit(1);
+        send_bit(1); send_bit(0); send_bit(1); send_bit(0);
+                
     
-
-      // Byte : 00110011
-      $display("\n -> Terceiro Byte: 00110011 (33)");
-      send_bit(0);
-      send_bit(0);
-      send_bit(1);
-      send_bit(1);
-      send_bit(0);
-      send_bit(0);
-      send_bit(1);
-      send_bit(1);
-
-      #200 
-      
-      // tira 1 bytes
-      deq_in = 1; #100;
-      deq_in = 0; #50;
-
-      // Byte : 00110011
-      $display("\n -> Terceiro Byte: 00110011 (33)");
-      send_bit(0);
-      send_bit(0);
-      send_bit(1);
-      send_bit(1);
-      send_bit(0);
-      send_bit(0);
-      send_bit(1);
-      send_bit(1);
-
         #1000;
         $stop;
     end

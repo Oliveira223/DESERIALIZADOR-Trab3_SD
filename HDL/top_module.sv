@@ -8,6 +8,7 @@ module top_module(
     output logic [7:0]  data_out,   // vetor retirado da fila
     output logic [3:0]  len_out,    // quantidade de elementos atualmente na fila
     output logic        status_out  // flag de erro de fila cheia/vazia
+    
 );
 
     //sinais pra o clock

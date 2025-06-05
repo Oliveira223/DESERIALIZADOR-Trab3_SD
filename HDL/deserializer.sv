@@ -87,7 +87,7 @@ typedef enum logic [1:0] {
                         state <= IDLE;
                     end
                     else begin
-                        $display("Ack_in LOW");
+                        $display("Ack_in LOW -> Locked Deserializer");
                         status_out <= 1;
                         state <= READY;
                     end

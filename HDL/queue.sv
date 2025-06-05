@@ -31,12 +31,12 @@ always @(posedge clock_10k or posedge reset) begin
             vector[i] <= 0;
         end
 
-        $display("\n===================\nQueue reset. Initial state:");
-        $display("[%h] [%h] [%h] [%h] [%h] [%h] [%h] [%h]", 
-        vector[0], vector[1], vector[2], vector[3], 
-        vector[4], vector[5], vector[6], vector[7]);
-        $display("Queue size: %0d", len_out);
-        $display("Head: %0d, Tail: %0d\n===================\n", head, tail);  
+        // $display("\n===================\nQueue reset. Initial state:");
+        // $display("[%h] [%h] [%h] [%h] [%h] [%h] [%h] [%h]", 
+        // vector[0], vector[1], vector[2], vector[3], 
+        // vector[4], vector[5], vector[6], vector[7]);
+        // $display("Queue size: %0d", len_out);
+        // $display("Head: %0d, Tail: %0d\n===================\n", head, tail);  
     end else begin
 
         ack_in_q <= 0;
@@ -48,7 +48,7 @@ always @(posedge clock_10k or posedge reset) begin
                 vector[tail] <= data_in;          //coloca o dado na fila
                 ack_in_q <= 1;                    //recebi o dado
                 $display(" > Recebi o dado, ACK_IN HIGH.");
-                $display("\n===================\nEnqueue: Put %h in position %0d", data_in, tail);
+                $display("\n========================\nEnqueue: Put %h in position %0d", data_in, tail);
                 tail <= (tail + 1) % 8;           //incrementa tail em 1, se chegar em 8 zera
                 len_out <= len_out + 1;
                     // Mostra o vetor inteiro após enqueue
@@ -57,16 +57,16 @@ always @(posedge clock_10k or posedge reset) begin
                     vector[0], vector[1], vector[2], vector[3], 
                     vector[4], vector[5], vector[6], vector[7]);
                     $display("Queue size: %0d", len_out);
-                    $display("Head: %0d, Tail: %0d\n===================\n", head, tail);  
+                    $display("Head: %0d, Tail: %0d\n========================\n", head, tail);  
 
             end else begin
             status_out <= 1;
-                $display("\n===================\nERROR: Queue FULL! Couldn't place %h", data_in);
+                $display("\n========================\nERROR: Queue FULL! Couldn't place %h", data_in);
                 $display("[%h] [%h] [%h] [%h] [%h] [%h] [%h] [%h]", 
                 vector[0], vector[1], vector[2], vector[3], 
                 vector[4], vector[5], vector[6], vector[7]);
                 $display("Queue size: %0d", len_out);
-                $display("Head: %0d, Tail: %0d\n===================\n", head, tail);  
+                $display("Head: %0d, Tail: %0d\n========================\n", head, tail);  
             end
         end
 
@@ -74,7 +74,7 @@ always @(posedge clock_10k or posedge reset) begin
         if(deq_in) begin
             if(len_out > 0) begin //se tem algo para tirar e deq_in ta ativo
                 data_out <= vector[head];         //primeiro que entrou
-                $display("\n===================\nI removed %h from the position %0d", vector[head], head);
+                $display("\n========================\nI removed %h from the position %0d", vector[head], head);
                 head <= (head + 1) % 8;           //incrementa head em 1, se chegar em 8 zera
                 len_out <= len_out - 1;
                     // Mostra o vetor inteiro após dequeue
@@ -83,7 +83,7 @@ always @(posedge clock_10k or posedge reset) begin
                     vector[0], vector[1], vector[2], vector[3], 
                     vector[4], vector[5], vector[6], vector[7]);
                     $display("Queue size: %0d", len_out);
-                    $display("Head: %0d, Tail: %0d\n===================\n", head, tail);  
+                    $display("Head: %0d, Tail: %0d\n========================\n", head, tail);  
             end else begin
                  $display("ERROR: Nothing to be removed");
             end
