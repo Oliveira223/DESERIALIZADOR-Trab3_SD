@@ -10,6 +10,7 @@ add wave -noupdate top_module_tb/DUT/clock_10k
 add wave -divider "Desserializer"
 add wave -noupdate top_module_tb/data_in
 
+add wave -noupdate top_module_tb/DUT/write_in
 add wave -noupdate top_module_tb/DUT/data_ready_des
 add wave -noupdate top_module_tb/DUT/data_out_des
 
